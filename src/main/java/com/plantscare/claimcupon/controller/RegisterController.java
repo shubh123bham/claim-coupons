@@ -22,10 +22,9 @@ public class RegisterController {
     }
 
     @PostMapping("/register")
-    @ResponseBody
     String registerUser(@ModelAttribute RegisterRequest registerRequest,Model model){
-
-        model.addAttribute("user",)
+        model.addAttribute("user",registrationService.registerNewUser(registerRequest));
         return "userprofile";
     }
 }
+

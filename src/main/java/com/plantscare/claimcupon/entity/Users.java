@@ -12,14 +12,14 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Users {
+    @Id
+    private int userId;
     private String email;
     private String password;
     private String name;
-    @Id
-    private int phoneNumber;
+    private String phoneNumber;
     private String parlourName;
     private int points;
-
     private String address;
     private int pinCode;
 

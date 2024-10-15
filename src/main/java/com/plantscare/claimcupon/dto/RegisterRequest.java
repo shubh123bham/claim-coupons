@@ -6,7 +6,7 @@ import lombok.Setter;
 @Getter@Setter
 public class RegisterRequest {
     private String name;
-    private int phoneNumber;
+    private String phoneNumber;
     private String email;
     private String parlourName;
     private int pinCode;

@@ -1,6 +1,7 @@
 package com.plantscare.claimcupon.service;
 
 import com.plantscare.claimcupon.dto.RegisterRequest;
+import com.plantscare.claimcupon.dto.UserInfo;
 import com.plantscare.claimcupon.entity.Users;
 import com.plantscare.claimcupon.repository.UserRepoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +13,8 @@ public class RegistrationService {
     @Autowired
     private UserRepoService userRepoService;
 
-    public Users registerNewUser(RegisterRequest registerRequest){
-        Users users = userRepoService.getReferenceById(registerRequest.getPhoneNumber());
+    public UserInfo registerNewUser(RegisterRequest registerRequest){
+        Users users = userRepoService.findUserByEmail(registerRequest.getEmail());
         if(users!=null){
             System.out.println("the user already exists");
         }else{
@@ -30,6 +31,15 @@ public class RegistrationService {
                     .build();
             userRepoService.save(users);
         }
-        return users;
+        UserInfo userInfo = UserInfo.builder()
+                .phoneNumber(users.getPhoneNumber())
+                .pinCode(users.getPinCode())
+                .email(users.getEmail())
+                .parlourName(users.getParlourName())
+                .points(users.getPoints())
+                .name(users.getName())
+                .address(users.getAddress())
+                .build();
+        return userInfo;
     }
 }
