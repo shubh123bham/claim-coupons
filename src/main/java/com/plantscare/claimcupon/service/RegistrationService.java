@@ -14,7 +14,7 @@ public class RegistrationService {
     private UserRepoService userRepoService;
 
     public UserInfo registerNewUser(RegisterRequest registerRequest){
-        Users users = userRepoService.findUserByEmail(registerRequest.getEmail());
+        Users users = userRepoService.findUserByPhoneNumber(registerRequest.getPhoneNumber());
         if(users!=null){
             System.out.println("the user already exists");
         }else{
@@ -32,6 +32,7 @@ public class RegistrationService {
             userRepoService.save(users);
         }
         UserInfo userInfo = UserInfo.builder()
+                .userId(users.getUserId())
                 .phoneNumber(users.getPhoneNumber())
                 .pinCode(users.getPinCode())
                 .email(users.getEmail())

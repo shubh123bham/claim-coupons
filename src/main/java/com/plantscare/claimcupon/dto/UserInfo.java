@@ -7,6 +7,7 @@ import lombok.Setter;
 @Getter@Setter
 @Builder
 public class UserInfo {
+    private int userId;
     private String name;
     private String email;
     private String phoneNumber;
